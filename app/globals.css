@@ -1,0 +1,24 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+html,
+body {
+  overflow-x: hidden;
+  max-width: 100%;
+}
+.maxContainer {
+  @apply mx-auto max-w-[1440px];
+}
+
+.paddingContainer {
+  @apply px-[15px] md:px-[54px] xl:px-[135px];
+}
+
+.undanganCardShadow {
+  box-shadow: 0 12px 120px rgba(45, 74, 170, 0.07);
+}
+
+.testimoniCardShadow {
+  box-shadow: 0 12px 40px rgba(45, 74, 170, 0.07);
+}
