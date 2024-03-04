@@ -15,11 +15,11 @@ import { FaStar } from "react-icons/fa6";
 import { IoLogoWhatsapp } from "react-icons/io5";
 import { IoIosArrowDown } from "react-icons/io";
 import { MdVerified } from "react-icons/md";
-import { motion } from "framer-motion";
 import { benefitData } from "@/lib/data";
 import { FaInstagram } from "react-icons/fa";
 import { AiOutlineGlobal } from "react-icons/ai";
 import { MdOutlineEmail } from "react-icons/md";
+import { useEffect } from "react";
 
 export default function Home() {
   const contactInfo = [
@@ -170,7 +170,7 @@ export default function Home() {
         </SectionContainer>
 
         {/* Supported Section */}
-        <SectionContainer className="pt-[19rem]">
+        <SectionContainer>
           <h2 className="text-center font-raleway text-[1.25rem] font-semibold text-primary md:text-[1.5rem] xl:text-[1.75rem]">
             Powered & Supported By
           </h2>

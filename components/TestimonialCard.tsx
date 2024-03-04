@@ -16,7 +16,7 @@ export default function TestimonialCard({
   username,
 }: TestimonialCardProps) {
   return (
-    <div className="flex w-full flex-col gap-[0.625rem] rounded-[1.25rem] border border-gray border-opacity-20 bg-white px-[1.25rem] py-[1.25rem] transition-all md:gap-[1.25rem]">
+    <div className="testimoniCardShadow flex max-w-[22.5rem] flex-col gap-[0.625rem] rounded-[1.25rem] border-opacity-20 bg-white px-[1.25rem] py-[1.25rem] transition-all md:max-w-[35.625rem] md:gap-[1.25rem]">
       <div className="flex items-center justify-between">
         <div className="flex items-center gap-[10px] md:gap-[15px]">
           <Image
