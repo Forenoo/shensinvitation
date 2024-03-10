@@ -27,7 +27,7 @@ interface CatalogItem {
 
 const getCatalogData = async () => {
   try {
-    const res = await fetch("http://localhost:3000/api/undangan", {
+    const res = await fetch("https://shensinvitation.vercel.app/api/undangan", {
       cache: "no-cache",
       method: "GET",
     });

@@ -28,10 +28,13 @@ export default function CatalogPagination() {
 
   const getCatalogData = async () => {
     try {
-      const res = await fetch("http://localhost:3000/api/undangan", {
-        cache: "no-cache",
-        method: "GET",
-      });
+      const res = await fetch(
+        "https://shensinvitation.vercel.app/api/undangan",
+        {
+          cache: "no-cache",
+          method: "GET",
+        },
+      );
 
       const data = await res.json();
       setCatalogData(data);
