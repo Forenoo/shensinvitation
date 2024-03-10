@@ -2,6 +2,8 @@ import type { Metadata } from "next";
 import "./globals.css";
 
 import { Raleway, Inter } from "next/font/google";
+import { prisma } from "@/utils/prisma";
+import Footer from "@/components/Footer";
 
 const inter = Inter({
   subsets: ["latin"],
@@ -31,6 +33,7 @@ export default function RootLayout({
         className={`${inter.className} ${raleway.variable} overflow-x-hidden`}
       >
         {children}
+        <Footer />
       </body>
     </html>
   );

@@ -1,5 +1,3 @@
-import React from "react";
-
 export default function page({ params }: { params: { id: string } }) {
   if (!params.id) return null;
   return (

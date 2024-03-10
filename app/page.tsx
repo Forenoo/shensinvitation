@@ -16,18 +16,31 @@ import { IoLogoWhatsapp } from "react-icons/io5";
 import { IoIosArrowDown } from "react-icons/io";
 import { MdVerified } from "react-icons/md";
 import { benefitData } from "@/lib/data";
-import { FaInstagram } from "react-icons/fa";
-import { AiOutlineGlobal } from "react-icons/ai";
-import { MdOutlineEmail } from "react-icons/md";
-import { useEffect } from "react";
+import { pricingTypes } from "@/lib/data";
 
-export default function Home() {
-  const contactInfo = [
-    { icon: IoLogoWhatsapp, text: "(+62) 896-9700-2110" },
-    { icon: FaInstagram, text: "@shensbagsouvenir" },
-    { icon: AiOutlineGlobal, text: "shensinvitation.com" },
-    { icon: MdOutlineEmail, text: "shensinvitation@gmail.com" },
-  ];
+interface CatalogItem {
+  id: string;
+  picture: string;
+  themeId: string;
+  type: string;
+}
+
+const getCatalogData = async () => {
+  try {
+    const res = await fetch("http://localhost:3000/api/undangan", {
+      cache: "no-cache",
+      method: "GET",
+    });
+
+    const data = await res.json();
+    return data.slice(0, 6);
+  } catch (error) {
+    console.log(error);
+  }
+};
+
+export default async function Home() {
+  const catalogData: CatalogItem[] = await getCatalogData();
 
   return (
     <>
@@ -49,7 +62,7 @@ export default function Home() {
             alt="logo"
             className="h-auto w-[5rem] md:w-[6.25rem] xl:w-[7.5rem]"
           />
-          <MdVerified className="absolute bottom-0 right-1 h-auto w-auto text-blurple md:w-[1.25rem] xl:w-[1.5625rem]" />
+          <MdVerified className="absolute bottom-0 right-1 h-auto w-auto text-blurple transition-all hover:scale-110 md:w-[1.25rem] xl:w-[1.5625rem]" />
         </div>
       </header>
 
@@ -82,6 +95,7 @@ export default function Home() {
               roundedType={"rounded-full"}
               buttonType={"primary"}
               className="!justify-normal"
+              linkHref="https://wa.me/6289697002110?text=Hallo%20kak%2C%20saya%20pingin%20konsultasi%20desain%20undangan%20pernikahan%20dari%20Shensinvitation."
             >
               <IoLogoWhatsapp className="size-[1.3rem]" /> Konsultasi Gratis
             </Button>
@@ -89,6 +103,7 @@ export default function Home() {
               roundedType={"rounded-full"}
               buttonType={"primary"}
               className="!justify-normal"
+              linkHref="#catalog"
             >
               <IoIosArrowDown className="size-[1.3rem]" /> Katalog Undangan
             </Button>
@@ -119,22 +134,27 @@ export default function Home() {
         </SectionContainer>
 
         {/* Catalog Section */}
-        <SectionContainer>
+        <SectionContainer sectionId="catalog">
           <SectionHeader
             tag="Catalog Undangan"
             title="Lihat Design Undangan"
             description="Temukan keindahan dalam catalog undangan online kami. Buat momen spesial Anda lebih istimewa dengan undangan digital dari kami!"
           />
-          <div className="grid grid-cols-1 justify-center gap-[1.25rem] md:grid-cols-2 xl:grid-cols-3 xl:gap-[1.5625rem] ">
-            {[...Array(9)].map((_, index) => (
-              <UndanganCard key={index} />
+          <div className="grid grid-cols-1 gap-[1.25rem] md:grid-cols-2 xl:grid-cols-3 xl:gap-[1.5625rem]">
+            {catalogData?.map((item: CatalogItem) => (
+              <UndanganCard
+                key={item.id}
+                picture={item.picture}
+                themeId={item.themeId}
+                invitationType={item.type}
+              />
             ))}
           </div>
           <div className="flex justify-center">
             <Button
               roundedType={"rounded"}
               buttonType={"primary"}
-              linkHref="/catalog-undangan"
+              linkHref="/catalog"
               className="mt-[1.875rem]"
             >
               Lihat Selengkapnya
@@ -150,12 +170,13 @@ export default function Home() {
             description="Layanan undangan pernikahan online kami ditujukan untuk memberikan kemudahan dan kepraktisan dalam membuat undangan pernikahan impian anda."
           />
           <div className="mt-[1.25rem] grid grid-cols-1 gap-[20px] md:grid-cols-2 xl:grid-cols-3 xl:gap-[1.875rem]">
-            <PricingCard type={"standard"} />
-            <PricingCard type={"premium"} className="z-10" />
-            <PricingCard
-              className="col-span-1 md:col-span-2 xl:col-span-1"
-              type={"diamond"}
-            />
+            {pricingTypes.map((card, index) => (
+              <PricingCard
+                key={index}
+                type={card.type}
+                className={card.className}
+              />
+            ))}
           </div>
         </SectionContainer>
 
@@ -183,65 +204,6 @@ export default function Home() {
           />
         </SectionContainer>
       </main>
-
-      {/* Footer */}
-      <footer className="mt-[8.75rem]">
-        <div className="h-[1px] w-full bg-[#E5E5E5]"></div>
-        <div className="maxContainer paddingContainer my-[80px] flex flex-col justify-between gap-[30px] xl:flex-row xl:gap-0">
-          <div className="flex flex-col gap-[12px] md:gap-[1.875rem]">
-            <div className="flex items-center">
-              <Image
-                src={logo}
-                width={50}
-                height={50}
-                alt="logo"
-                className="-ml-2 h-auto w-[3rem] md:-ml-5 md:w-[5rem]"
-              />
-              <h1 className="font-raleway text-[1rem] font-semibold text-primary md:text-[1.5rem]">
-                SHENSINVITATION
-              </h1>
-            </div>
-            <p className="max-w-[500px] text-[0.875rem] text-gray md:text-[1rem]">
-              Shensinvitation adalah penyedia jasa pembuatan undangan pernikahan
-              digital. Kami menyediakan undangan website dengan memberikan
-              banyak benefit dan fitur yang lengkap.
-            </p>
-            <div>
-              <span className="text-[0.875rem] text-gray md:text-[1rem]">
-                CONTACT
-              </span>
-              <h2 className="text-[1rem] font-semibold text-primary md:text-[20px]">
-                shensinvitation@gmail.com
-              </h2>
-            </div>
-          </div>
-          <div className="flex flex-col gap-[3.125rem]">
-            <h2 className="hidden text-[1.25rem] font-medium text-primary xl:flex">
-              Lebih Dekat Dengan Kami
-            </h2>
-            <ul className="flex flex-col gap-[0.9375rem]">
-              {contactInfo.map((info, index) => {
-                const Icon = info.icon;
-                return (
-                  <li
-                    key={index}
-                    className="flex items-center gap-[0.625rem] text-[0.875rem] text-primary md:text-[1rem]"
-                  >
-                    <Icon className="size-7 rounded-full bg-blurple bg-opacity-10 p-1 text-blurple" />{" "}
-                    {info.text}
-                  </li>
-                );
-              })}
-            </ul>
-          </div>
-        </div>
-        <div className="paddingContainer maxContainer h-[1px] w-full bg-[#E5E5E5]"></div>
-        <p className="py-[1.25rem] text-center text-[0.75rem] md:text-[0.875rem] xl:text-[1rem]">
-          Copyright © 2024{" "}
-          <span className="font-medium text-black">Shensinvitation</span>. All
-          rights reserved
-        </p>
-      </footer>
     </>
   );
 }

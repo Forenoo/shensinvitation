@@ -13,6 +13,8 @@ import {
   benefittwelveicon,
 } from "@/public";
 
+import catalogPlaceholder from "@/public/placeholderweddingcard.jpg";
+
 export const benefitData = [
   {
     icons: benefitoneicon,
@@ -100,4 +102,68 @@ export const testimonialData = [
       "Lorem ipsum dolor sit amet, consectetur adipiscing elit. Etiam efficitur quam mi, a bibendum nisl pharetra quis. Mauris vel velit et urna ornare lacinia. Praesent et aliquam sem, in consequat ligula. Donec sed nisi at justo aliquet aliquet. Vestibulum ac neque leo. Donec a venenatis dui. Vestibulum non rhoncus ligula. Sed hendrerit tortor a sapien lacinia, ut efficitur ipsum blandit. Donec tincidunt elit in dolor commodo, ut eleifend orci dictum. Nulla tincidunt ex mi, sed volutpat neque vestibulum id. Ut sit amet lacus ut nunc condimentum tempus quis sed odio. Donec elementum consectetur vulputate.",
     username: "Budi",
   },
+] as const;
+
+export const catalogData = [
+  {
+    id: "shp-001",
+    picture: catalogPlaceholder,
+    type: "standard",
+  },
+  {
+    id: "shp-002",
+    picture: catalogPlaceholder,
+    type: "premium",
+  },
+  {
+    id: "shp-003",
+    picture: catalogPlaceholder,
+    type: "standard",
+  },
+  {
+    id: "shp-004",
+    picture: catalogPlaceholder,
+    type: "premium",
+  },
+  {
+    id: "shp-005",
+    picture: catalogPlaceholder,
+    type: "standard",
+  },
+  {
+    id: "shp-006",
+    picture: catalogPlaceholder,
+    type: "premium",
+  },
+  {
+    id: "shp-007",
+    picture: catalogPlaceholder,
+    type: "standard",
+  },
+  {
+    id: "shp-008",
+    picture: catalogPlaceholder,
+    type: "premium",
+  },
+  {
+    id: "shp-009",
+    picture: catalogPlaceholder,
+    type: "standard",
+  },
+  {
+    id: "shp-010",
+    picture: catalogPlaceholder,
+    type: "premium",
+  },
+  {
+    id: "shp-011",
+    picture: catalogPlaceholder,
+    type: "standard",
+  },
+] as const;
+
+export const pricingTypes = [
+  { type: "standard", className: "" },
+  { type: "premium", className: "z-10" },
+  { type: "diamond", className: "" },
 ] as const;

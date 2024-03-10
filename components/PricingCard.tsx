@@ -3,7 +3,7 @@ import Button from "./Button";
 
 interface PricingCardProps {
   type: "standard" | "premium" | "diamond";
-  className?: string;
+  className?: string[] | string;
 }
 
 const benefitList = [
@@ -22,23 +22,29 @@ const typeDetails = {
     startingPrice: "Rp 119.000",
     discountPrice: "Rp 74.000",
     description: "Nikmati momen spesialmu dengan gaya minimalist!",
+    chatLink:
+      "https://wa.me/6289697002110?text=Hallo%20kak%2C%20saya%20ingin%20memesan%20undangan%20digital%20paket%20*Standard*.%20Bisa%20dibantu%3F",
   },
   premium: {
     checkedIndex: 6,
     startingPrice: "Rp 149.000",
     discountPrice: "Rp 99.000",
     description: "Nikmati momen spesialmu dengan gaya modern!",
+    chatLink:
+      "https://wa.me/6289697002110?text=Hallo%20kak%2C%20saya%20ingin%20memesan%20undangan%20digital%20paket%20*Premium*.%20Bisa%20dibantu%3F",
   },
   diamond: {
     checkedIndex: 7,
     startingPrice: "Rp 249.000",
     discountPrice: "Rp 199.000",
     description: "Nikmati momen spesialmu sesuai dengan gaya design impianmu!",
+    chatLink:
+      "https://wa.me/6289697002110?text=Hallo%20kak%2C%20saya%20ingin%20memesan%20undangan%20digital%20paket%20*Diamond*.%20Bisa%20dibantu%3F",
   },
 };
 
 export default function PricingCard({ type, className }: PricingCardProps) {
-  const { checkedIndex, startingPrice, discountPrice, description } =
+  const { checkedIndex, startingPrice, discountPrice, description, chatLink } =
     typeDetails[type];
 
   return (
@@ -87,7 +93,7 @@ export default function PricingCard({ type, className }: PricingCardProps) {
       <Button
         buttonType={"primary"}
         roundedType={"rounded"}
-        linkHref={"/"}
+        linkHref={chatLink}
         className="mt-[0.9375rem] w-full !py-[0.6875rem]"
       >
         Pesan Sekarang <FaArrowRight />

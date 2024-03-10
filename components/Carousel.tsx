@@ -1,19 +1,50 @@
 import TestimonialCard from "./TestimonialCard";
 import Marquee from "react-fast-marquee";
 
-import { testimonialData } from "@/lib/data";
+interface TestimonialDataProps {
+  id: string;
+  username: string;
+  rating: number;
+  comment: string;
+  createdAt: any;
+}
 
-export default function Carousel() {
+const getTestimonialData = async () => {
+  try {
+    const res = await fetch("http://localhost:3000/api/testimoni", {
+      method: "GET",
+      cache: "no-cache",
+    });
+
+    return res.json();
+  } catch (err) {
+    console.log(err);
+  }
+};
+
+const formatDate = (dateString: string) => {
+  const date = new Date(dateString);
+  const day = String(date.getDate()).padStart(2, "0");
+  const month = String(date.getMonth() + 1).padStart(2, "0");
+  const year = date.getFullYear();
+
+  return `${day}/${month}/${year}`;
+};
+
+export default async function Carousel() {
+  const testimonialData: TestimonialDataProps[] = await getTestimonialData();
   return (
-    <Marquee pauseOnHover={true} speed={70} className="-mt-4 py-10">
-      {[...testimonialData, ...testimonialData].map((testi, index) => (
-        <div key={index} className="mx-3">
-          <TestimonialCard
-            testimoniDate={testi.testimoniDate}
-            userRating={testi.userRating}
-            userComment={testi.userComment}
-            username={testi.username}
-          />
+    <Marquee speed={70} className="-mt-4 py-10">
+      {testimonialData.map((testi: TestimonialDataProps) => (
+        <div key={testi.id} className="mx-3">
+          {testi && (
+            <TestimonialCard
+              testimoniDate={formatDate(testi.createdAt)}
+              userRating={testi.rating}
+              userComment={testi.comment}
+              username={testi.username}
+            />
+          )}
         </div>
       ))}
     </Marquee>

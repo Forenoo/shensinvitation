@@ -17,7 +17,7 @@ export default function TestimonialCard({
 }: TestimonialCardProps) {
   return (
     <div className="testimoniCardShadow flex max-w-[22.5rem] flex-col gap-[0.625rem] rounded-[1.25rem] border-opacity-20 bg-white px-[1.25rem] py-[1.25rem] transition-all md:max-w-[35.625rem] md:gap-[1.25rem]">
-      <div className="flex items-center justify-between">
+      <div className="flex items-center justify-between gap-10">
         <div className="flex items-center gap-[10px] md:gap-[15px]">
           <Image
             src={placeholder}
@@ -43,7 +43,7 @@ export default function TestimonialCard({
         </div>
       </div>
       <div className="h-[1px] w-full bg-gray bg-opacity-30"></div>
-      <p className="text-[12px] leading-[140%] text-black md:text-[0.875rem]">
+      <p className="text-[12px] leading-[150%] text-black md:text-[0.875rem]">
         {userComment}
       </p>
     </div>
