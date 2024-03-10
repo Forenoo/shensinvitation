@@ -50,14 +50,16 @@ export default function CatalogPagination() {
   return (
     <>
       <div className="grid grid-cols-1 gap-[1.25rem] md:grid-cols-2 xl:grid-cols-3 xl:gap-[1.5625rem]">
-        {catalogData.slice(startIndex, endIndex).map((item) => (
-          <UndanganCard
-            key={item.id}
-            picture={item.picture}
-            themeId={item.themeId}
-            invitationType={item.type}
-          />
-        ))}
+        {catalogData
+          ?.slice(startIndex, endIndex)
+          .map((item) => (
+            <UndanganCard
+              key={item.id}
+              picture={item.picture}
+              themeId={item.themeId}
+              invitationType={item.type}
+            />
+          ))}
       </div>
 
       <Pagination className="my-[2rem]">

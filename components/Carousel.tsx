@@ -38,7 +38,7 @@ export default async function Carousel() {
   const testimonialData: TestimonialDataProps[] = await getTestimonialData();
   return (
     <Marquee speed={70} className="-mt-4 py-10">
-      {testimonialData.map((testi: TestimonialDataProps) => (
+      {testimonialData?.map((testi: TestimonialDataProps) => (
         <div key={testi.id} className="mx-3">
           {testi && (
             <TestimonialCard
