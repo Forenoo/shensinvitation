@@ -34,9 +34,9 @@ export default function CatalogPagination() {
           cache: "no-cache",
           method: "GET",
         },
-      );
+      ).then((res) => res.json());
 
-      const data = await res.json();
+      const data = await res;
       setCatalogData(data);
     } catch (error) {
       console.log(error);

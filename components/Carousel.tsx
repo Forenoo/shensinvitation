@@ -17,9 +17,9 @@ const getTestimonialData = async () => {
         method: "GET",
         cache: "no-cache",
       },
-    );
+    ).then((res) => res.json());
 
-    return res.json();
+    return res;
   } catch (err) {
     console.log(err);
   }

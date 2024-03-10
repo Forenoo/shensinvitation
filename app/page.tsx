@@ -30,9 +30,9 @@ const getCatalogData = async () => {
     const res = await fetch("https://shensinvitation.vercel.app/api/undangan", {
       cache: "no-cache",
       method: "GET",
-    });
+    }).then((res) => res.json());
 
-    const data = await res.json();
+    const data = await res;
     return data.slice(0, 6);
   } catch (error) {
     console.log(error);
