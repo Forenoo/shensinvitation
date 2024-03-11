@@ -70,6 +70,7 @@ html,
 body {
   overflow-x: hidden;
   max-width: 100%;
+  scroll-behavior: smooth;
 }
 .maxContainer {
   @apply mx-auto max-w-[1440px];
