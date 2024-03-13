@@ -11,13 +11,10 @@ interface TestimonialDataProps {
 
 const getTestimonialData = async () => {
   try {
-    const res = await fetch(
-      "https://shensinvitation.vercel.app/api/testimoni",
-      {
-        method: "GET",
-        cache: "no-cache",
-      },
-    ).then((res) => res.json());
+    const res = await fetch("http://localhost:3000/api/testimoni", {
+      method: "GET",
+      cache: "no-cache",
+    }).then((res) => res.json());
 
     return res;
   } catch (err) {

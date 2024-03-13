@@ -17,31 +17,9 @@ import { IoIosArrowDown } from "react-icons/io";
 import { MdVerified } from "react-icons/md";
 import { benefitData } from "@/lib/data";
 import { pricingTypes } from "@/lib/data";
+import CatalogList from "@/components/CatalogList";
 
-interface CatalogItem {
-  id: string;
-  picture: string;
-  themeId: string;
-  type: string;
-}
-
-const getCatalogData = async () => {
-  try {
-    const res = await fetch("http://localhost:3000", {
-      cache: "no-cache",
-      method: "GET",
-    }).then((res) => res.json());
-
-    const data = await res;
-    return data.slice(0, 6);
-  } catch (error) {
-    console.log(error);
-  }
-};
-
-export default async function Home() {
-  const catalogData: CatalogItem[] = await getCatalogData();
-
+export default function Home() {
   return (
     <>
       {/* Header */}
@@ -141,14 +119,7 @@ export default async function Home() {
             description="Temukan keindahan dalam catalog undangan online kami. Buat momen spesial Anda lebih istimewa dengan undangan digital dari kami!"
           />
           <div className="grid grid-cols-1 gap-[1.25rem] md:grid-cols-2 xl:grid-cols-3 xl:gap-[1.5625rem]">
-            {catalogData?.map((item: CatalogItem) => (
-              <UndanganCard
-                key={item.id}
-                picture={item.picture}
-                themeId={item.themeId}
-                invitationType={item.type}
-              />
-            ))}
+            <CatalogList />
           </div>
           <div className="flex justify-center">
             <Button
